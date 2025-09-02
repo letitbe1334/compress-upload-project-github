@@ -1,17 +1,12 @@
 # 소개
 <div align="center">
   <img src="https://img.shields.io/badge/DEOH-default-blue?style=flat" alt="deoh default" />
-  <img src="https://img.shields.io/badge/-Node.js-green?style=flat&logo=nodedotjs
-  " alt="node.js" />
-  <img src="https://img.shields.io/badge/-TypeScript-black?style=flat&logo=typescript
-  " alt="TypeScript" />
-  <img src="https://img.shields.io/badge/-Vue.js-%235C5C5C?style=flat&logo=vuedotjs
-  " alt="Vue.js" />
-  <img src="https://img.shields.io/badge/-Vite-white?style=flat&logo=vite
-  " alt="Vite" />
+  <img src="https://img.shields.io/badge/-Node.js-green?style=flat&logo=nodedotjs" alt="node.js" />
+  <img src="https://img.shields.io/badge/-TypeScript-black?style=flat&logo=typescript" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/-Vue.js-%235C5C5C?style=flat&logo=vuedotjs" alt="Vue.js" />
+  <img src="https://img.shields.io/badge/-Vite-white?style=flat&logo=vite" alt="Vite" />
   <img src="https://img.shields.io/badge/Quasar-2.17.0-%23050A14?logo=quasar" alt="Quasar" />
-  <img src="https://img.shields.io/badge/Vercel-deploy-%23000000?logo=vercel
-  " alt="Vercel" />
+  <img src="https://img.shields.io/badge/Vercel-deploy-%23000000?logo=vercel" alt="Vercel" />
   <br/>
 </div>
 용량이 큰 이미지 파일 업로드 시에 발생한 문제들을 어떻게 해결했는지 작성했습니다.<br/>
