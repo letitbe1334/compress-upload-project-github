@@ -19,7 +19,7 @@ COPY .yarn/ .yarn/
 COPY .pnp.* ./
 
 # 3. 의존성 설치
-RUN yarn install --immutable --production
+RUN yarn install --immutable
 
 # 4. 애플리케이션 빌드
 COPY . .
