@@ -28,6 +28,14 @@ export const asyncRouterMap = [
     children: [{ name: 'imageContainer', path: '', component: () => import('@/components/ImageContainer.vue') }],
     meta: { editable: true, layout: 'full', menulog: 'N' }
   },
+  {
+    path: '/health',
+    name: 'healthcheck',
+    hidden: true,
+    component: FullLayout,
+    children: [{ name: 'imageContainer', path: '', component: () => import('@/components/ImageContainer.vue') }],
+    meta: { editable: true, layout: 'full', menulog: 'N' }
+  },
 ]
 
 const router = createRouter({
