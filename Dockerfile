@@ -9,6 +9,8 @@ WORKDIR /app
 # corepack 활성화 (Yarn Berry 사용을 위해 필수)
 RUN corepack enable
 
+RUN yarn set version stable
+
 # 1. 의존성 파일 복사 (파일만)
 COPY package.json yarn.lock ./
 
