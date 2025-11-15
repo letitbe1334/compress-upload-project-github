@@ -1,33 +1,37 @@
-# ----------------------------------------------------------------------
-# Stage 1: Vue Build (Node.js 환경)
-# ----------------------------------------------------------------------
-FROM node:22-alpine as build 
+# -----------------------------------------------------
+# Stage 1: Build (Frontend App)
+# -----------------------------------------------------
+FROM node:22-alpine AS build
 
+# 작업 디렉토리 설정
 WORKDIR /app
 
-# 의존성 설치 및 캐시 활용
-COPY package.json package-lock.json ./
-RUN npm install 
+# corepack 활성화 (Yarn Berry 사용을 위해 필수)
+RUN corepack enable
 
-# 소스 코드 복사 및 빌드
+# 1. 의존성 파일 복사 (파일만)
+COPY package.json yarn.lock ./
+
+# 2. Yarn Berry의 PnP 및 캐시 폴더 복사
+# .yarn/ 폴더를 워크스페이스 내 .yarn/ 폴더로 복사합니다.
+COPY .yarn/ .yarn/
+# 기타 PnP 관련 파일도 복사합니다 (예: .pnp.cjs)
+COPY .pnp.* ./
+
+# 3. 의존성 설치
+RUN yarn install --immutable --production
+
+# 4. 애플리케이션 빌드
 COPY . .
-RUN npm run build 
-# 빌드 결과물은 /app/dist에 있다고 가정합니다.
+RUN yarn build
 
-# ----------------------------------------------------------------------
-# Stage 2: Production (Nginx 서빙 환경)
-# ----------------------------------------------------------------------
-# [Nginx 설치] Nginx 공식 이미지를 사용하므로 별도 설치 과정이 필요 없습니다.
+
+# -----------------------------------------------------
+# Stage 2: Production (Nginx Service)
+# -----------------------------------------------------
 FROM nginx:alpine
 
-# [1] Nginx 설정 파일 복사: Health Check 및 SPA 라우팅 로직 포함
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# [2] 빌드된 정적 파일 복사
-# Stage 1의 /app/dist 결과물을 Nginx의 기본 서빙 경로로 복사합니다.
 COPY --from=build /app/dist /usr/share/nginx/html
 
-EXPOSE 80
-
-# 컨테이너 시작 시 Nginx 실행
 CMD ["nginx", "-g", "daemon off;"]
