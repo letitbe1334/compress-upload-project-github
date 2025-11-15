@@ -39,12 +39,18 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # 2. 빌드 결과물 복사
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# 3. 🚨🚨🚨 Nginx 실행 사용자에 맞게 파일 권한 및 소유자 변경 (500 오류 해결 핵심) 🚨🚨🚨
-# Nginx의 기본 유저인 nginx (UID/GID 101)에게 권한을 부여합니다.
+# 3. Nginx 실행 사용자에 맞게 파일 권한 및 소유자 변경 (웹 루트 파일 읽기 권한)
 RUN chown -R nginx:nginx /usr/share/nginx/html 
 RUN chmod -R 755 /usr/share/nginx/html
 
-# 컨테이너를 nginx 유저로 실행
-#USER nginx
+# 🚨🚨🚨 4. 캐시 폴더 권한 설정 추가 (Emergency Error 해결) 🚨🚨🚨
+# Nginx가 캐시 폴더에 파일을 쓸 수 있도록 소유권을 nginx 유저에게 부여합니다.
+RUN chown -R nginx:nginx /var/cache/nginx
+
+# 5. 컨테이너를 nginx 유저로 실행 (이전 시도에서 문제가 발생했다면 주석 처리하는 것이 좋음)
+# 만약 이전 로그에 `[warn] 1#1: the "user" directive makes sense only...` 경고가 나왔다면, 
+# 'USER nginx'는 Nginx가 자동으로 처리하므로 생략하거나, Nginx 실행 유저로 지정해도 무방합니다. 
+# 일단 안전하게 명시해 둡니다.
+USER nginx
 
 CMD ["nginx", "-g", "daemon off;"]
