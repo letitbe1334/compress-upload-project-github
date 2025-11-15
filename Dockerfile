@@ -33,7 +33,18 @@ RUN yarn build
 # -----------------------------------------------------
 FROM nginx:alpine
 
+# 1. 설정 파일 복사
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# 2. 빌드 결과물 복사
 COPY --from=build /app/dist /usr/share/nginx/html
+
+# 3. 🚨🚨🚨 Nginx 실행 사용자에 맞게 파일 권한 및 소유자 변경 (500 오류 해결 핵심) 🚨🚨🚨
+# Nginx의 기본 유저인 nginx (UID/GID 101)에게 권한을 부여합니다.
+RUN chown -R nginx:nginx /usr/share/nginx/html 
+RUN chmod -R 755 /usr/share/nginx/html
+
+# 컨테이너를 nginx 유저로 실행
+USER nginx
 
 CMD ["nginx", "-g", "daemon off;"]
