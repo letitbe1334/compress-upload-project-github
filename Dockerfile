@@ -45,6 +45,6 @@ RUN chown -R nginx:nginx /usr/share/nginx/html
 RUN chmod -R 755 /usr/share/nginx/html
 
 # 컨테이너를 nginx 유저로 실행
-USER nginx
+#USER nginx
 
 CMD ["nginx", "-g", "daemon off;"]
