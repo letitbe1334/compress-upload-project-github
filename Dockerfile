@@ -51,6 +51,6 @@ RUN chown -R nginx:nginx /var/cache/nginx
 # 만약 이전 로그에 `[warn] 1#1: the "user" directive makes sense only...` 경고가 나왔다면, 
 # 'USER nginx'는 Nginx가 자동으로 처리하므로 생략하거나, Nginx 실행 유저로 지정해도 무방합니다. 
 # 일단 안전하게 명시해 둡니다.
-USER nginx
+#USER nginx
 
 CMD ["nginx", "-p", "/tmp/nginx.pid", "-g", "daemon off;"]
