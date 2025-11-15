@@ -53,4 +53,4 @@ RUN chown -R nginx:nginx /var/cache/nginx
 # 일단 안전하게 명시해 둡니다.
 USER nginx
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-p", "/tmp/nginx.pid", "-g", "daemon off;"]
