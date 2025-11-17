@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="triggerVueSyncError">Vue 동기 오류 발생</button>
+    <button @click="triggerVueSyncError">Vue 동기 오류 발생 (mounted에서도 발생함, 이후 수기 발생)</button>
     <button @click="triggerUnhandledRejection">Promise에서 catch 없이 발생하는 오류 발생</button>
     <button @click="triggerWindowError">Vue 컴포넌트 외부에서 발생하는 일반적인 JavaScript 런타임 오류 발생</button>
   </div>
