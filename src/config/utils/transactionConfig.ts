@@ -18,6 +18,11 @@ const transactionConfig = {
       }
     }
   },
+  log: {
+    error: {
+      url: '/api/log/error'
+    }
+  },
   attach: {
     file: {
       upload: {

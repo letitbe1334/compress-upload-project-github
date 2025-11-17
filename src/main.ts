@@ -22,6 +22,9 @@ import { loadLayouts } from '@/config/layouts'
 /** utils set Global variables */
 import { loadUtils } from '@/config/utils'
 
+/** utils set Global variables */
+import { configError } from '@/config/error'
+
 /** CSS */
 import '@assets/style/main.scss'
 
@@ -48,5 +51,8 @@ loadLayouts(app)
 
 /** utils */
 loadUtils(app)
+
+/** error handler */
+configError(app)
 
 app.mount('#app')

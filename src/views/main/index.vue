@@ -1,5 +1,6 @@
 <template>
   <div class="main-container">
+    <ErrorTest />
     <!-- 제목 -->
     <h2>📸 이미지 파일 압축</h2>
     <div class="main-description">
@@ -33,6 +34,8 @@
   </div>
 </template>
 <script setup lang="ts">
+import ErrorTest from '@/components/ErrorTest.vue'
+
 
 /******************************
  * #Important 사용하지 않는 로직, 변수 등 선언 X
