@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <ErrorTest />
+    <!-- <ErrorTest /> -->
     <!-- 제목 -->
     <h2>📸 이미지 파일 압축</h2>
     <div class="main-description">
